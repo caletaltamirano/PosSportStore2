@@ -1,0 +1,46 @@
+Clothe;5;Nike Pro Shirt;Camiseta deportiva ajustada;25000.0;6;M;Negro;CAMISA
+Shoe;6;Adidas Ultraboost;Zapatilla premium para correr;120000.0;4;42;Blanco;RUNNING
+Accesories;7;Under Armour Wristband;Muñequera deportiva absorbente;7000.0;14;Under;GUANTE
+Clothe;8;Puma Training Shorts;Short ligero para entrenamiento;28000.0;8;L;Azul;PANTALON
+Shoe;9;Vans Old Skool;Clásico casual resistente;55000.0;6;41;Negro/Blanco;CASUAL
+Accesories;10;Oakley Sport Sunglasses;Lentes resistentes al sol;95000.0;2;Oakley;RELOJ
+Clothe;11;Jordan Hoodie;Sudadera premium con capucha;90000.0;4;L;Rojo;CHAQUETA
+Shoe;12;Converse Chuck Taylor;Clásicos atemporales;48000.0;7;43;Blanco;CASUAL
+Accesories;13;Wilson Tennis Grip;Grip profesional para raqueta;6000.0;20;Wilson;GUANTE
+Clothe;14;Adidas Compression Pants;Pantalón compresivo entrenamiento;35000.0;6;M;Negro;PANTALON
+Accesories;15;Spalding Basketball;Balón oficial entrenamiento;32000.0;4;Spalding;RELOJ
+Shoe;16;Reebok Nano X;Zapatilla para crossfit y pesas;99000.0;5;42;Gris;RUNNING
+Clothe;17;Nike Dri-Fit Tank;Camisa sin mangas ligera;23000.0;12;S;Azul;CAMISA
+Accesories;18;Gym Leather Gloves;Guantes para pesas;15000.0;9;Gorilla;GUANTE
+Shoe;19;Asics Court Speed;Zapatilla para tenis;75000.0;3;44;Azul;RUNNING
+Clothe;20;NewBalance Jacket;Chamarra ligera casual;68000.0;3;M;Beige;CHAQUETA
+Accesories;21;Adidas Gym Bag;Bolso deportivo impermeable;45000.0;5;Adidas;BOLSO
+Shoe;22;New Balance Fresh Foam;Zapatilla cómoda running;110000.0;4;42;Verde;RUNNING
+Clothe;23;Under Armour Seamless Tee;Camisa ligera sin costuras;30000.0;10;L;Gris;CAMISA
+Shoe;24;Fila Disruptor 2;Estilo urbano moderno;70000.0;6;41;Blanco;CASUAL
+Accesories;25;Nike Sports Watch;Reloj deportivo resistente al agua;85000.0;3;Nike;RELOJ
+Clothe;26;Reebok Long Socks;Calcetines acolchonados;9000.0;20;XL;Blanco;CALCETINES
+Shoe;27;Nike Zoom Fly;Zapatilla para velocidad;140000.0;4;43;Negro;RUNNING
+Accesories;28;Puma Classic Cap;Gorra con diseño bordado;18000.0;6;Puma;GORRA
+Clothe;29;Adidas Tracksuit Pants;Pantalón deportivo clásico;45000.0;7;M;Negro;PANTALON
+Shoe;30;Air Jordan 1 Low;Modelo icónico;155000.0;3;42;Rojo;BASKETBALL
+Accesories;31;Under Armour Gym Bag;Bolso grande impermeable;60000.0;4;UA;BOLSO
+Clothe;32;The North Face Jacket;Chaqueta ligera para clima frío;120000.0;2;L;Gris;CHAQUETA
+Shoe;33;Timberland Boots;Botas resistentes para exteriores;160000.0;2;44;Miel;BOTAS
+Accesories;34;Adidas Training Gloves;Guantes acolchados para gym;20000.0;10;Adidas;GUANTE
+Clothe;35;Champion Essentials Tee;Camisa básica cómoda;22000.0;15;M;Negro;CAMISA
+Shoe;36;Under Armour Charged;Zapatilla ligera de entrenamiento;95000.0;5;41;Azul;RUNNING
+Accesories;37;Casio Sport Watch;Reloj resistente estilo clásico;42000.0;3;Casio;RELOJ
+Clothe;38;Nike Elite Socks;Calcetines de alto rendimiento;12000.0;12;M;Blanco;CALCETINES
+Shoe;39;Puma Smash V3;Zapatilla casual versátil;65000.0;6;42;Blanco;CASUAL
+Accesories;40;Vans Snapback Hat;Gorra estilo urbano;21000.0;5;Vans;GORRA
+Clothe;41;Under Armour Tech Shirt;Camisa ligera de secado rápido;26000.0;8;L;Azul;CAMISA
+Shoe;42;Nike Lebron Witness;Zapatilla diseñada para basketball;170000.0;3;45;Negro;BASKETBALL
+Accesories;43;Reebok Backpack;Bolso resistente con múltiples compartimentos;53000.0;4;Reebok;BOLSO
+Clothe;44;Adidas Windbreaker;Chaqueta ligera rompevientos;95000.0;5;L;Verde;CHAQUETA
+Shoe;45;Columbia Hiking Boots;Botas resistentes para senderismo;165000.0;2;44;Café;BOTAS
+Accesories;46;Nike Sport Gloves;Guantes antideslizantes;18000.0;8;Nike;GUANTE
+Clothe;47;Gym Compression Shorts;Pantalón corto compresivo;28000.0;10;M;Negro;PANTALON
+Shoe;48;Skechers GoWalk 6;Zapatilla cómodo para caminar;80000.0;6;41;Gris;CASUAL
+Accesories;49;Digital Fitness Watch;Reloj con conteo de pasos;75000.0;3;FitLife;RELOJ
+Clothe;50;Classic Polo Shirt;Camisa polo casual elegante;35000.0;9;L;Blanco;CAMISA

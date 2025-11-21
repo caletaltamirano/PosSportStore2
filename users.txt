@@ -1,0 +1,4 @@
+1;Calet;1;ADMIN
+3;Calet2;Dkfr2834;CAJERO
+4;1;2;ADMIN
+5;Scar;2;CAJERO
