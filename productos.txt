@@ -1,12 +1,12 @@
-Clothe;5;Nike Pro Shirt;Camiseta deportiva ajustada;25000.0;6;M;Negro;CAMISA
-Shoe;6;Adidas Ultraboost;Zapatilla premium para correr;120000.0;4;42;Blanco;RUNNING
+Clothe;5;Nike Pro Shirt;Camiseta deportiva ajustada;25000.0;5;M;Negro;CAMISA
+Shoe;6;Adidas Ultraboost;Zapatilla premium para correr;120000.0;3;42;Blanco;RUNNING
 Accesories;7;Under Armour Wristband;Muñequera deportiva absorbente;7000.0;14;Under;GUANTE
 Clothe;8;Puma Training Shorts;Short ligero para entrenamiento;28000.0;8;L;Azul;PANTALON
-Shoe;9;Vans Old Skool;Clásico casual resistente;55000.0;6;41;Negro/Blanco;CASUAL
-Accesories;10;Oakley Sport Sunglasses;Lentes resistentes al sol;95000.0;2;Oakley;RELOJ
+Shoe;9;Vans Old Skool;Clásico casual resistente;55000.0;5;41;Negro/Blanco;CASUAL
+Accesories;10;Oakley Sport Sunglasses;Lentes resistentes al sol;95000.0;1;Oakley;RELOJ
 Clothe;11;Jordan Hoodie;Sudadera premium con capucha;90000.0;4;L;Rojo;CHAQUETA
-Shoe;12;Converse Chuck Taylor;Clásicos atemporales;48000.0;7;43;Blanco;CASUAL
-Accesories;13;Wilson Tennis Grip;Grip profesional para raqueta;6000.0;20;Wilson;GUANTE
+Shoe;12;Converse Chuck Taylor;Clásicos atemporales;48000.0;6;43;Blanco;CASUAL
+Accesories;13;Wilson Tennis Grip;Grip profesional para raqueta;6000.0;19;Wilson;GUANTE
 Clothe;14;Adidas Compression Pants;Pantalón compresivo entrenamiento;35000.0;6;M;Negro;PANTALON
 Accesories;15;Spalding Basketball;Balón oficial entrenamiento;32000.0;4;Spalding;RELOJ
 Shoe;16;Reebok Nano X;Zapatilla para crossfit y pesas;99000.0;5;42;Gris;RUNNING
@@ -42,5 +42,6 @@ Shoe;45;Columbia Hiking Boots;Botas resistentes para senderismo;165000.0;2;44;Ca
 Accesories;46;Nike Sport Gloves;Guantes antideslizantes;18000.0;8;Nike;GUANTE
 Clothe;47;Gym Compression Shorts;Pantalón corto compresivo;28000.0;10;M;Negro;PANTALON
 Shoe;48;Skechers GoWalk 6;Zapatilla cómodo para caminar;80000.0;6;41;Gris;CASUAL
-Accesories;49;Digital Fitness Watch;Reloj con conteo de pasos;75000.0;3;FitLife;RELOJ
+Accesories;49;Digital Fitness Watch;Reloj con conteo de pasos;75000.0;2;FitLife;RELOJ
 Clothe;50;Classic Polo Shirt;Camisa polo casual elegante;35000.0;9;L;Blanco;CAMISA
+Clothe;47;Camisa urban;una prueba de camisa;12000.0;2;L;Azul;CAMISA

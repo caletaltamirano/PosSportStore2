@@ -27,7 +27,7 @@ public class ProductosView extends JPanel {
 
     private JPanel createHeader() {
         JLabel title = new JLabel("GESTIÓN DE PRODUCTOS");
-        title.setFont(MainFrame.FONT_TITLE.deriveFont(20f)); 
+        title.setFont(MainFrame.FONT_TITLE.deriveFont(15f)); 
         title.setForeground(MainFrame.COLOR_TEXT_DARK); 
         
         // Contenedor de botones a la derecha
@@ -45,7 +45,7 @@ public class ProductosView extends JPanel {
         stockButton.addActionListener(e -> modifyStockAction()); 
 
         // --- 2. Botón ELIMINAR PRODUCTO ---
-        JButton deleteButton = new JButton("Eliminar Producto");
+        JButton deleteButton = new JButton("Eliminar");
         deleteButton.setFont(new Font("Inter", Font.BOLD, 16)); 
         deleteButton.setBackground(new Color(220, 53, 69)); // Rojo
         deleteButton.setForeground(Color.WHITE); 
@@ -55,7 +55,7 @@ public class ProductosView extends JPanel {
         deleteButton.addActionListener(e -> deleteProductAction());
         
         // --- 3. Botón AÑADIR NUEVO PRODUCTO ---
-        JButton addButton = new JButton("Añadir Nuevo Producto");
+        JButton addButton = new JButton("Nuevo");
         addButton.setFont(new Font("Inter", Font.BOLD, 16)); 
         addButton.setBackground(MainFrame.COLOR_PRIMARY_BLUE); 
         addButton.setForeground(Color.WHITE); 
