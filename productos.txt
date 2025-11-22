@@ -1,9 +1,8 @@
-Clothe;5;Nike Pro Shirt;Camiseta deportiva ajustada;25000.0;5;M;Negro;CAMISA
-Shoe;6;Adidas Ultraboost;Zapatilla premium para correr;120000.0;3;42;Blanco;RUNNING
+Clothe;5;Nike Pro Shirt;Camiseta deportiva ajustada;25000.0;3;M;Negro;CAMISA
+Shoe;6;Adidas Ultraboost;Zapatilla premium para correr;120000.0;5;42;Blanco;RUNNING
 Accesories;7;Under Armour Wristband;Muñequera deportiva absorbente;7000.0;14;Under;GUANTE
 Clothe;8;Puma Training Shorts;Short ligero para entrenamiento;28000.0;8;L;Azul;PANTALON
 Shoe;9;Vans Old Skool;Clásico casual resistente;55000.0;5;41;Negro/Blanco;CASUAL
-Accesories;10;Oakley Sport Sunglasses;Lentes resistentes al sol;95000.0;1;Oakley;RELOJ
 Clothe;11;Jordan Hoodie;Sudadera premium con capucha;90000.0;4;L;Rojo;CHAQUETA
 Shoe;12;Converse Chuck Taylor;Clásicos atemporales;48000.0;6;43;Blanco;CASUAL
 Accesories;13;Wilson Tennis Grip;Grip profesional para raqueta;6000.0;19;Wilson;GUANTE

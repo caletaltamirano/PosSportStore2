@@ -1,3 +1,4 @@
-1;Calet;1;ADMIN
+1;Calet;12;ADMIN
 5;Scar;2;ADMIN
 6;Byron;3;ADMIN
+7;aa;1;CAJERO
