@@ -3,28 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/MainFrame.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/MainFrame.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/DiscountDialog.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/StoreSystem.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/User.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/DashboardView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/InvoicesView.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/invoices.txt</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/VentasView.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/StockDialog.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/UsuariosView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/UsersView.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/UserManager.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/AddProductDialog.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/StSystem.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/MainApp.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Shoe.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/ProductosView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ReturnDialog.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/CurrentSale.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/FacturasView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/StockDialog.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ProductsView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/LoginUI.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/AddProductDialog.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Clothe.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Product.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Sale.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/MainApp.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/users.txt</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/SalesView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Accessories.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/productos.txt</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/igu/LoginUI.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Accesories.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/DashboardView.java</file>
         </group>
     </open-files>
 </project-private>

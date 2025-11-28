@@ -1,2 +1,0 @@
-igu.a
-IGU.MainApp

@@ -2,44 +2,60 @@ package possportstore;
 
 import java.io.*;
 import java.util.Scanner;
-import possportstore.User.Role;
-import javax.swing.JOptionPane;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
+import possportstore.User.Role;
 
+/**
+ * Manages User entities, including authentication, CRUD operations, and file persistence.
+ */
 public class UserManager {
     
-    private User[] users;
-    private int userCount;
-    private int nextUserId; // 🔑 NUEVO: Contador para generar IDs secuenciales
     private static final int MAX_USERS = 10;
     private static final String FILE_NAME = "users.txt";
     
+    private User[] users;
+    private int userCount;
+    private int nextUserId;
     private User currentUser; 
 
+    /**
+     * Initializes the UserManager, allocates memory for users, and loads data from the file.
+     */
     public UserManager() {
         this.users = new User[MAX_USERS];
         this.userCount = 0;
-        this.nextUserId = 1; // Empieza a contar IDs desde 1
-        cargarUsuarios(); 
+        this.nextUserId = 1; 
+        loadUsers(); 
     }
     
+    /**
+     * Gets the currently logged-in user.
+     * @return The authenticated {@link User} object, or null if no user is logged in.
+     */
     public User getCurrentUser() {
         return this.currentUser;
     }
     
     /**
-     * Retorna un sub-arreglo (copia) que contiene solo los usuarios válidos.
-     * Este es el método que usa UsuariosView para llenar la tabla.
+     * Returns a copy of the active users array, trimmed to the actual count.
+     * Used for displaying users in tables.
+     * @return An array of {@link User} objects.
      */
     public User[] getUsersForDisplay() {
         return Arrays.copyOf(users, userCount);
     }
 
-    // --- Lógica de Login (Usando Hash/PasswordHash si la clase User lo tiene) ---
+    /**
+     * Authenticates a user against the stored records.
+     *
+     * @param username The input username.
+     * @param password The input password.
+     * @return The authenticated {@link User} if credentials match, null otherwise.
+     */
     public User authenticate(String username, String password) {
         for (int i = 0; i < userCount; i++) {
             User user = users[i];
-            // 🔑 USAMOS getPasswordHash() o getPassword() de la clase User
             if (user.getUsername().equals(username) && user.getPasswordHash().equals(password)) {
                 this.currentUser = user; 
                 return user;
@@ -49,71 +65,82 @@ public class UserManager {
         return null;
     }
     
-    // --- Lógica de CRUD para UsuariosView ---
+    // --- CRUD Operations ---
 
     /**
-     * Añade un nuevo usuario con un ID generado automáticamente.
+     * Adds a new user to the system.
+     * Checks for username uniqueness before adding.
+     *
+     * @param username The new username.
+     * @param password The new password.
+     * @param role     The role assigned to the new user.
+     * @return true if the user was successfully added, false otherwise.
      */
     public boolean addUser(String username, String password, Role role) {
         if (userCount >= MAX_USERS) {
-            JOptionPane.showMessageDialog(null, "Límite de usuarios alcanzado.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "User limit reached.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
-        // Verificar duplicados por nombre
         for (int i = 0; i < userCount; i++) {
             if (users[i].getUsername().equals(username)) {
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Username already exists.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
 
-        // 🔑 USAMOS nextUserId y pasamos la contraseña
         User newUser = new User(nextUserId++, username, password, role);
         users[userCount++] = newUser;
-        guardarUsuarios();
+        saveUsers();
         return true;
     }
     
     /**
-     * Actualiza los datos de un usuario existente.
+     * Updates an existing user's information.
+     *
+     * @param id          The ID of the user to update.
+     * @param newUsername The new username (must be unique).
+     * @param newPassword The new password (if null or empty, password remains unchanged).
+     * @param newRole     The new role.
+     * @return true if the update was successful, false if the user was not found or username conflict occurred.
      */
     public boolean updateUser(int id, String newUsername, String newPassword, Role newRole) {
         for (int i = 0; i < userCount; i++) {
             User u = users[i];
             
-            // 1. Encontrar el usuario por ID
             if (u.getId() == id) {
-                // 2. Verificar duplicidad de nombre con OTROS usuarios
+                // Check for duplicate username in other records
                 for (int j = 0; j < userCount; j++) {
                     if (i != j && users[j].getUsername().equals(newUsername)) {
-                        JOptionPane.showMessageDialog(null, "El nombre de usuario ya está en uso.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Username already in use.", "Error", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
                 }
                 
-                // 3. Aplicar Setters (requiere la clase User corregida)
                 u.setUsername(newUsername);
                 u.setRole(newRole);
                 
-                // Si la contraseña no es nula ni vacía, actualizar
                 if (newPassword != null && !newPassword.isEmpty()) {
-                    u.setPasswordHash(newPassword); // Asume que ya está hasheada o se hashea en User
+                    u.setPasswordHash(newPassword);
                 }
                 
-                guardarUsuarios();
+                saveUsers();
                 return true;
             }
         }
-        return false; // Usuario no encontrado
+        return false;
     }
     
     /**
-     * Elimina un usuario por su ID.
+     * Deletes a user from the system by ID.
+     * Prevents deletion of the root administrator (ID 1).
+     *
+     * @param id The ID of the user to delete.
+     * @return true if the user was deleted, false otherwise.
      */
     public boolean deleteUser(int id) {
-        if (id == 1) { // Proteger al primer administrador
-            JOptionPane.showMessageDialog(null, "No se puede eliminar al usuario principal (ID 1).", "Error", JOptionPane.ERROR_MESSAGE);
+        if (id == 1) { // Protect Root Admin
+            JOptionPane.showMessageDialog(null, "Cannot delete root admin (ID 1).", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         
@@ -127,73 +154,64 @@ public class UserManager {
 
         if (indexToRemove == -1) return false;
 
-        // 1. Desplazar elementos para llenar el hueco
+        // Shift array to fill the gap
         for (int i = indexToRemove; i < userCount - 1; i++) {
             users[i] = users[i + 1];
         }
-        
-        // 2. Reducir el contador y limpiar la última posición (opcional, pero buena práctica)
         users[--userCount] = null; 
         
-        guardarUsuarios();
+        saveUsers();
         return true;
     }
     
-    // --- Persistencia ---
+    // --- Persistence ---
     
     /**
-     * Carga usuarios desde el archivo. Si no existe, crea los usuarios por defecto.
+     * Loads users from the text file.
+     * If the file does not exist, it creates default users.
      */
-    private void cargarUsuarios() {
+    private void loadUsers() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
-    // 🔑 Aquí addUser DEBE usar el nextUserId=1 para el admin   
-    addUser("admin", "123", Role.ADMIN); 
-    addUser("cajero", "456", Role.CAJERO);
-    guardarUsuarios(); 
-    return;
-}
+            addUser("admin", "123", Role.ADMIN); 
+            addUser("cashier", "456", Role.CAJERO);
+            saveUsers(); 
+            return;
+        }
 
         int maxId = 0;
         try (Scanner fileScanner = new Scanner(file)) {
             while (fileScanner.hasNextLine() && userCount < MAX_USERS) {
                 String line = fileScanner.nextLine();
-                // 🔑 CRÍTICO: El formato DEBE ser ahora ID;username;password;ROLE
                 String[] data = line.split(";"); 
                 
-                // data.length debe ser 4
                 if (data.length == 4) { 
                     int id = Integer.parseInt(data[0]);
                     String username = data[1];
                     String passwordHash = data[2];
                     Role role = Role.valueOf(data[3]);
                     
-                    // 🔑 USAMOS EL CONSTRUCTOR DE 4 PARÁMETROS
                     users[userCount++] = new User(id, username, passwordHash, role);
                     
-                    // Rastreamos el ID más alto para mantener la secuencia
                     if (id > maxId) maxId = id; 
                 }
             }
         } catch (Exception e) {
-            System.err.println("ERROR al cargar usuarios: " + e.getMessage());
+            System.err.println("ERROR loading users: " + e.getMessage());
         }
-        
-        // 🔑 Aseguramos que el próximo ID a asignar continúe la secuencia
         this.nextUserId = maxId + 1;
     }
     
     /**
-     * Guarda todos los usuarios del arreglo fijo en el archivo.
+     * Saves the current list of users to the text file.
      */
-    public void guardarUsuarios() {
+    public void saveUsers() {
         try (PrintWriter writer = new PrintWriter(FILE_NAME)) {
             for (int i = 0; i < userCount; i++) {
-                // Se asume que User.toString() devuelve: ID;username;password;ROLE
                 writer.println(users[i].toString()); 
             }
         } catch (FileNotFoundException e) {
-            System.err.println("ERROR al guardar usuarios: " + e.getMessage());
+            System.err.println("ERROR saving users: " + e.getMessage());
         }
     }
 }

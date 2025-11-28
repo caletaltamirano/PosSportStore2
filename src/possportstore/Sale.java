@@ -1,87 +1,239 @@
 package possportstore;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 import javax.swing.JOptionPane;
-import java.util.Date;
-import java.util.Arrays; // Asegúrate de que java.util.Arrays está importado
+import possportstore.CurrentSale.CartItem;
 
+/**
+ * Manages the history of sales invoices and their file persistence.
+ * <p>
+ * This class handles the creation, storage, retrieval, and modification 
+ * of {@link Invoice} objects. It uses fixed arrays to store invoices and invoice items.
+ * </p>
+ */
 public class Sale {
     
-    // El arreglo fijo para almacenar las facturas
-    private static Invoice[] invoices = new Invoice[100]; // Límite de 100 facturas
+    private static final String FILE_NAME = "invoices.txt";
+    private static final int MAX_INVOICES = 100;
+    
+    private static Invoice[] invoices = new Invoice[MAX_INVOICES]; 
     private static int invoiceCount = 0;
     private static int nextInvoiceId = 1;
-    private static final String FILE_NAME = "invoices.txt";
     
-    // Clase interna para la factura
+    /**
+     * Inner class representing a single sales invoice.
+     * Contains header information, global discount info, and a fixed array of sold items.
+     */
     public static class Invoice {
         public final int id;
-        public final double total; // Contiene el monto total de la venta
+        public final double total;
         public final String date;
         public final String cashier;
-        
+        public final double globalDiscount; // Stored as percentage (e.g., 0.10)
+        public final InvoiceItem[] items; 
 
-        public Invoice(int id, double total, String date, String cashier) {
+        /**
+         * Constructs a new Invoice.
+         */
+        public Invoice(int id, double total, String date, String cashier, double globalDiscount, InvoiceItem[] items) {
             this.id = id;
             this.total = total;
             this.date = date;
             this.cashier = cashier;
+            this.globalDiscount = globalDiscount;
+            this.items = items;
         }
 
-        // 🔑 MÉTODO AGREGADO: Necesario para el Dashboard (getTotalSalesRevenue)
-        public double getTotal() {
-            return total;
-        }
+        public double getTotal() { return total; }
+        public int getId() { return id; }
+        public String getCashier() { return cashier; }
+        public String getDate() { return date; }
+        public double getGlobalDiscount() { return globalDiscount; }
+        public InvoiceItem[] getItems() { return items; }
 
-        public int getId() {
-            return id;
-        }
-        
-        public String getCashier() {
-            return cashier;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
+        /**
+         * Formats the invoice for file storage.
+         * Format: id;total;date;cashier;globalDisc;itemId:qty:price:name:itemDisc|...
+         */
         @Override
         public String toString() {
-            return id + ";" + total + ";" + date + ";" + cashier;
+            StringBuilder sb = new StringBuilder();
+            sb.append(id).append(";")
+              .append(total).append(";")
+              .append(date).append(";")
+              .append(cashier).append(";")
+              .append(globalDiscount).append(";");
+            
+            if (items != null) {
+                for (int i = 0; i < items.length; i++) {
+                    InvoiceItem item = items[i];
+                    if (item != null) {
+                        sb.append(item.productId).append(":")
+                          .append(item.quantity).append(":")
+                          .append(item.unitPrice).append(":")
+                          .append(item.productName).append(":")
+                          .append(item.discountPercent);
+                        
+                        if (i < items.length - 1) {
+                            sb.append("|");
+                        }
+                    }
+                }
+            }
+            return sb.toString();
         }
     }
 
-    // --------------------------------------------------------------
-    //  NUEVO MÉTODO PARA CREAR FACTURA DESDE UN TOTAL (Reemplaza processSale)
-    // --------------------------------------------------------------
     /**
-     * Crea una nueva factura con el total y los datos del cajero, y la registra.
+     * Helper class to store a snapshot of a sold item within an invoice.
      */
-    public static Invoice createInvoiceFromTotal(double total, String cashierName) {
+    public static class InvoiceItem {
+        public String productId;
+        public String productName;
+        public int quantity;
+        public double unitPrice; // This is the EFFECTIVE price paid per unit
+        public double discountPercent; // The specific item discount
+
+        public InvoiceItem(String productId, String productName, int quantity, double unitPrice, double discountPercent) {
+            this.productId = productId;
+            this.productName = productName;
+            this.quantity = quantity;
+            this.unitPrice = unitPrice;
+            this.discountPercent = discountPercent;
+        }
+    }
+
+    /**
+     * Creates a new invoice from the transaction total and cart items.
+     * <p>
+     * IMPORTANT: This calculates the effective unit price for history.
+     * Effective Price = Base Price * (1 - ItemDisc) * (1 - GlobalDisc).
+     * This ensures refunds are accurate to what was paid.
+     * </p>
+     *
+     * @param total          The total sale amount.
+     * @param cashierName    The name of the cashier.
+     * @param cartItems      The array of items from the current cart.
+     * @param globalDiscount The global discount percentage applied.
+     * @return The created {@link Invoice} object.
+     */
+    public static Invoice createInvoice(double total, String cashierName, CartItem[] cartItems, double globalDiscount) {
         if (invoiceCount >= invoices.length) {
-            JOptionPane.showMessageDialog(null, "Límite de facturas alcanzado.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invoice limit reached.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         
-        String date = new Date().toString(); // Usamos java.util.Date como su código anterior
+        String date = new Date().toString();
         
-        Invoice newInvoice = new Invoice(nextInvoiceId++, total, date, cashierName);
+        int itemCount = (cartItems != null) ? cartItems.length : 0;
+        InvoiceItem[] invoiceItems = new InvoiceItem[itemCount];
         
-        invoices[invoiceCount++] = newInvoice; // Añadir al arreglo fijo
+        if (cartItems != null) {
+            for (int i = 0; i < itemCount; i++) {
+                CartItem ci = cartItems[i];
+                
+                // Calculate the final price the customer paid per unit
+                // Base * ItemDisc * GlobalDisc
+                double effectivePrice = ci.getProduct().getPrice() * (1.0 - ci.getDiscountPercent()) * (1.0 - globalDiscount);
+                
+                invoiceItems[i] = new InvoiceItem(
+                    ci.getProduct().getIdProduct(),
+                    ci.getProduct().getName(),
+                    ci.getQuantity(),
+                    effectivePrice,
+                    ci.getDiscountPercent()
+                );
+            }
+        }
+
+        Invoice newInvoice = new Invoice(nextInvoiceId++, total, date, cashierName, globalDiscount, invoiceItems);
         
-        guardarFacturasEnArchivo();
+        invoices[invoiceCount++] = newInvoice;
+        saveInvoicesToFile();
         
         return newInvoice;
     }
     
-    // --- Persistencia de Facturas (Lógica de Carga) ---
-    
-    public static void cargarFacturasDesdeArchivo() {
-        File file = new File(FILE_NAME);
-        if (!file.exists()) {
-            return;
+    /**
+     * Processes a return by updating the specific invoice.
+     * Same logic as before, but preserving the new structure.
+     */
+    public static boolean processItemReturn(int invoiceId, String productId, int returnedQty) {
+        int invoiceIndex = -1;
+        for (int i = 0; i < invoiceCount; i++) {
+            if (invoices[i].getId() == invoiceId) {
+                invoiceIndex = i;
+                break;
+            }
         }
+        
+        if (invoiceIndex == -1) return false;
+        
+        Invoice oldInvoice = invoices[invoiceIndex];
+        InvoiceItem[] oldItems = oldInvoice.getItems();
+        
+        int itemIndex = -1;
+        int activeItemCount = 0;
+        
+        for (int i = 0; i < oldItems.length; i++) {
+            if (oldItems[i].productId.equals(productId)) {
+                itemIndex = i;
+            }
+            if (oldItems[i] != null) activeItemCount++; 
+        }
+        
+        if (itemIndex == -1) return false;
+        
+        InvoiceItem targetItem = oldItems[itemIndex];
+        int newQuantity = targetItem.quantity - returnedQty;
+        
+        int newSize = (newQuantity <= 0) ? activeItemCount - 1 : activeItemCount;
+        InvoiceItem[] newItems = new InvoiceItem[newSize];
+        
+        int k = 0;
+        double newTotal = 0.0;
+        
+        for (int i = 0; i < oldItems.length; i++) {
+            if (i == itemIndex) {
+                if (newQuantity > 0) {
+                    InvoiceItem updatedItem = new InvoiceItem(
+                        targetItem.productId, 
+                        targetItem.productName, 
+                        newQuantity, 
+                        targetItem.unitPrice,
+                        targetItem.discountPercent
+                    );
+                    newItems[k++] = updatedItem;
+                    newTotal += updatedItem.quantity * updatedItem.unitPrice;
+                }
+            } else {
+                newItems[k++] = oldItems[i];
+                newTotal += oldItems[i].quantity * oldItems[i].unitPrice;
+            }
+        }
+        
+        Invoice updatedInvoice = new Invoice(
+            oldInvoice.id, 
+            newTotal, 
+            oldInvoice.date, 
+            oldInvoice.cashier,
+            oldInvoice.globalDiscount,
+            newItems
+        );
+        
+        invoices[invoiceIndex] = updatedInvoice;
+        saveInvoicesToFile();
+        
+        return true;
+    }
+    
+    /**
+     * Loads invoices from the persistence file at startup.
+     */
+    public static void loadInvoicesFromFile() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) return;
         
         int maxId = 0;
         try (Scanner fileScanner = new Scanner(file)) {
@@ -89,43 +241,80 @@ public class Sale {
                 String line = fileScanner.nextLine();
                 String[] data = line.split(";");
                 
-                if (data.length == 4) {
+                // Now expecting 6 parts for header due to globalDiscount
+                // id;total;date;cashier;globalDisc;items
+                if (data.length >= 5) {
                     int id = Integer.parseInt(data[0]);
                     double total = Double.parseDouble(data[1]);
                     String date = data[2];
                     String cashier = data[3];
                     
-                    invoices[invoiceCount++] = new Invoice(id, total, date, cashier);
+                    // Check if format has global discount (backward compatibility check)
+                    double globalDisc = 0.0;
+                    String itemsString = "";
                     
-                    // Actualizar el nextInvoiceId para continuar la secuencia
-                    if (id > maxId) {
-                        maxId = id;
+                    // Logic to handle old format vs new format
+                    if (data.length >= 6) {
+                        // New format
+                        try {
+                            globalDisc = Double.parseDouble(data[4]);
+                        } catch(Exception e) { globalDisc = 0.0; }
+                        itemsString = data[5];
+                    } else {
+                        // Old format (header length 5) - items are at index 4
+                        itemsString = data[4];
                     }
+                    
+                    InvoiceItem[] items = new InvoiceItem[0];
+                    
+                    if (!itemsString.isEmpty()) {
+                        String[] itemsRaw = itemsString.split("\\|");
+                        items = new InvoiceItem[itemsRaw.length];
+                        
+                        for (int i = 0; i < itemsRaw.length; i++) {
+                            String[] parts = itemsRaw[i].split(":");
+                            // id:qty:price:name:disc
+                            if (parts.length >= 4) {
+                                double itemDisc = (parts.length > 4) ? Double.parseDouble(parts[4]) : 0.0;
+                                items[i] = new InvoiceItem(
+                                    parts[0], 
+                                    parts[3], 
+                                    Integer.parseInt(parts[1]), 
+                                    Double.parseDouble(parts[2]),
+                                    itemDisc
+                                );
+                            }
+                        }
+                    }
+                    
+                    invoices[invoiceCount++] = new Invoice(id, total, date, cashier, globalDisc, items);
+                    if (id > maxId) maxId = id;
                 }
             }
-        } catch (IOException | NumberFormatException e) {
-             System.err.println("ERROR al cargar facturas: " + e.getMessage());
+        } catch (Exception e) {
+             System.err.println("ERROR loading invoices: " + e.getMessage());
         }
-        // Aseguramos que el próximo ID sea el siguiente al más alto cargado
         nextInvoiceId = maxId + 1;
     }
     
-    // --- Persistencia de Facturas (Lógica de Guardado) ---
-    
-    public static void guardarFacturasEnArchivo() {
+    public static void saveInvoicesToFile() {
         try (PrintWriter writer = new PrintWriter(FILE_NAME)) {
             for (int i = 0; i < invoiceCount; i++) {
                 writer.println(invoices[i].toString());
             }
         } catch (FileNotFoundException e) {
-             System.err.println("ERROR al guardar facturas: " + e.getMessage());
+             System.err.println("ERROR saving invoices: " + e.getMessage());
         }
     }
     
-    /**
-     * Retorna una copia del arreglo de facturas para visualización.
-     */
     public static Invoice[] getInvoicesForDisplay() {
-        return java.util.Arrays.copyOf(invoices, invoiceCount);
+        return Arrays.copyOf(invoices, invoiceCount);
+    }
+    
+    public static Invoice findInvoiceById(int id) {
+        for(int i=0; i<invoiceCount; i++) {
+            if(invoices[i].getId() == id) return invoices[i];
+        }
+        return null;
     }
 }

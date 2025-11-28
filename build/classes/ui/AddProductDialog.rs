@@ -1,0 +1,2 @@
+ui.AddProductDialog
+ui.SimpleDocumentListener
