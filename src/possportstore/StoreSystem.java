@@ -389,4 +389,21 @@ public class StoreSystem {
         }
         return totalUnits;
     }
+    
+
+    // --- Printing Logic ---
+
+    /**
+     * Sends an invoice to the default printer using the ReceiptPrinter utility.
+     * @param invoice The invoice to print.
+     */
+    public void printInvoice(Sale.Invoice invoice) {
+        if (invoice != null) {
+            // Run in a separate thread to not block the UI
+            new Thread(() -> {
+                ui.ReceiptPrinter printer = new ui.ReceiptPrinter(invoice);
+                printer.print();
+            }).start();
+        }
+    }
 }

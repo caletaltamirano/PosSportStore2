@@ -3,27 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/MainFrame.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/DiscountDialog.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/StoreSystem.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/User.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/InvoicesView.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/invoices.txt</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/UsersView.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/UserManager.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Shoe.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ReturnDialog.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/CurrentSale.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/PrintOptionDialog.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/StockDialog.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ProductsView.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/LoginUI.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/AddProductDialog.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Clothe.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Product.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Sale.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/MainApp.java</file>
-            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/users.txt</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/SalesView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ReceiptPrinter.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/MainFrame.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/StoreSystem.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/User.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/UserManager.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Shoe.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ReturnDialog.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/ProductsView.java</file>
+            <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/users.txt</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/possportstore/Accessories.java</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/productos.txt</file>
             <file>file:/C:/Users/calet/Documents/PROYECTO%20PROGRA/PosSportStore/src/ui/DashboardView.java</file>

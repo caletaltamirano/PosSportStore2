@@ -1,5 +1,5 @@
-Shoe;1;Adidas Ultraboost;Zapatilla premium para correr;120000.0;6;42;Blanco;RUNNING
-Shoe;2;Vans Old Skool;Clásico casual resistente;55000.0;4;41;Negro/Blanco;CASUAL
+Shoe;1;Adidas Ultraboost;Zapatilla premium para correr;120000.0;1;42;Blanco;RUNNING
+Shoe;2;Vans Old Skool;Clásico casual resistente;55000.0;3;41;Negro/Blanco;CASUAL
 Shoe;3;Converse Chuck Taylor;Clásicos atemporales;48000.0;6;43;Blanco;CASUAL
 Shoe;4;Reebok Nano X;Zapatilla para crossfit y pesas;99000.0;6;42;Gris;RUNNING
 Shoe;5;Asics Court Speed;Zapatilla para tenis;75000.0;6;44;Azul;RUNNING
@@ -18,4 +18,3 @@ Shoe;17;Nike Air Max Fury;Zapatilla ligera con cámara de aire;130000.0;4;42;Bla
 Shoe;18;Jordan Retro 4;Modelo premium edición clásica;200000.0;2;44;Gris;BASKETBALL
 Shoe;19;Asics Gel Nimbus;Edición alta amortiguación;145000.0;5;42;Azul;RUNNING
 Shoe;20;Reebok Classic Leather;Estilo retro icónico;70000.0;4;41;Blanco;CASUAL
-Clothe;21;PRUEBA;camisa de prueba amarilla;20000.0;2;L;Amarilla;SHIRT

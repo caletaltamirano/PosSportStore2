@@ -432,8 +432,8 @@ public class SalesView extends JPanel {
         loadProductsIntoCatalog();
     }
 
-    /**
-     * Finalizes the sale, creates an invoice, and clears the cart.
+   /**
+     * Finalizes the sale and opens the touch-friendly print dialog.
      */
     private void finalizeSale() {
         if (currentSale.getItems().length == 0) {
@@ -444,7 +444,12 @@ public class SalesView extends JPanel {
         possportstore.Sale.Invoice finalInvoice = system.finalizeSale(currentSale);
         
         if (finalInvoice != null) {
-            JOptionPane.showMessageDialog(this, "Venta Exitosa #" + finalInvoice.getId(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            // OPEN THE NEW TOUCH DIALOG instead of JOptionPane
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            PrintOptionDialog printDialog = new PrintOptionDialog(parentFrame, finalInvoice);
+            printDialog.setVisible(true);
+
+            // Cleanup after dialog closes
             currentSale.clear();
             updateCartDisplay();
             loadProductsIntoCatalog();
